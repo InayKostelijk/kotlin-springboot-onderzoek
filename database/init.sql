@@ -1,0 +1,2 @@
+CREATE USER "hu-s3-kotlin-sprinbootonderzoek-dbadmin" WITH CREATEDB PASSWORD 'hu-s3-kotlin-sprinbootonderzoek-pwd';
+CREATE DATABASE "hu-s3-onderzoekDatabase" OWNER "hu-s3-kotlin-sprinbootonderzoek-dbadmin";

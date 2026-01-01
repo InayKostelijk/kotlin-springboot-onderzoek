@@ -1,0 +1,20 @@
+#This file is only for running the database so that u can develop faster by running the application locally
+services:
+  db:
+    image: postgres
+    ports:
+      # This means you can connect to 'localhost:15432' from your computer
+      # and it will patch it through to the container-port 5432
+      - "15432:5432"
+    environment:
+      # So the database-superuser is called postgres/admin
+      # The account our application will use is configured in init.sql
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      # Required volume: creates the initial db and user
+      - "./database:/docker-entrypoint-initdb.d"
+      # Optional volume: saves data between docker runs
+      - project_kotlin_springboot_onderzoek_db_data:/var/lib/postgresql/data"
+
+volumes:
+  project_kotlin_springboot_onderzoek_db_data:
