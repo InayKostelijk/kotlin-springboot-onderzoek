@@ -1,16 +1,25 @@
 package nl.confighurator.backend.expense_tracker.application.service
 
-import nl.confighurator.backend.expense_tracker.data.ExpenseRepository
+import jakarta.transaction.Transactional
+import nl.confighurator.backend.expense_tracker.application.dto.ExpenseDto
 import nl.confighurator.backend.expense_tracker.data.ExpenseSystemRepository
 import nl.confighurator.backend.expense_tracker.domain.Expense
-import nl.confighurator.backend.expense_tracker.domain.ExpenseSystem
-import org.apache.coyote.BadRequestException
-import org.springframework.web.bind.annotation.ResponseStatus
-import org.springframework.web.server.ResponseStatusException
+import org.springframework.stereotype.Service
 
-class ExpenseSystemService() {
-    fun createExpense(expense: Expense, expenseRepository: ExpenseRepository, expenseSystemRepository: ExpenseSystemRepository): Expense {
-        val expenseSystem = expenseSystemRepository.findById(expense.id!!).orElseThrow(ResponseStatusException("de id mist"))
+@Service
+@Transactional
+class ExpenseSystemService(private val expenseSystemRepository: ExpenseSystemRepository) {
+
+    fun createExpense(expenseDto: ExpenseDto): Boolean {
+        val expenseSystem = expenseSystemRepository.findById("ExpenseSystem").orElse(null)
+
+        if (expenseSystem == null) {
+            return false
+        }
+        val expense = Expense(expenseDto.item, expenseDto.category, expenseDto.price)
+        expenseSystem.createExpense(expense)
+
+        return true
 
     }
 

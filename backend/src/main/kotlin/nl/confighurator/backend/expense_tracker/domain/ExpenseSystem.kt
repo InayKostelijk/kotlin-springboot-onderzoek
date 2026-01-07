@@ -12,8 +12,15 @@ class ExpenseSystem {
     @Id
      val  id: String = "ExpenseSystem"
 
-    @OneToMany(targetEntity = Expense::class, cascade = [(CascadeType.ALL)])
+    @OneToMany(targetEntity = Expense::class, cascade = [CascadeType.ALL])
     @JoinColumn(name = "expense_system_id")
     var expenseList: MutableList<Expense>  = mutableListOf()
         protected set
+
+
+
+    fun createExpense(expense: Expense): Expense {
+        expenseList.add(expense)
+        return expense
+    }
 }

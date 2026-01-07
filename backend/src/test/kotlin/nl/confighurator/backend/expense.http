@@ -10,6 +10,6 @@ Content-Type: application/json
 
 {
   "item": "mcChicken",
-  "category": "food",
+  "category": "FOOD_DRINKS",
   "price": 50
 }

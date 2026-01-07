@@ -12,7 +12,7 @@ import java.time.LocalDateTime
 
 
 @Entity
-open class Expense(
+class Expense(
     item: String,
     category: ExpenseCategory,
     price: Double
@@ -24,6 +24,7 @@ open class Expense(
      var item: String = item
         protected set
 
+    @Enumerated(EnumType.STRING)
      var category: ExpenseCategory = category
         protected set
 
@@ -34,8 +35,8 @@ open class Expense(
     val createdAt: LocalDateTime? = null
 
     @UpdateTimestamp
-     final var updatedAt: LocalDateTime? = null
-        private set
+     var updatedAt: LocalDateTime? = null
+        protected set
 
 
     fun update(item: String, category: ExpenseCategory, price: Double) {
