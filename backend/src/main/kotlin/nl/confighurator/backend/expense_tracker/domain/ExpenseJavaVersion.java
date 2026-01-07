@@ -29,6 +29,13 @@ import java.time.LocalDateTime;
 
         public ExpenseJavaVersion() {
         }
+        public void update(String title, ExpenseCategory category, Double price, LocalDateTime createdAt, LocalDateTime updatedAt) {
+            this.title = title;
+            this.category = category;
+            this.price = price;
+            this.createdAt = createdAt;
+            this.updatedAt = updatedAt;
+        }
 
         public ExpenseJavaVersion(long id, String title, ExpenseCategory category, Double price, LocalDateTime createdAt, LocalDateTime updatedAt) {
             this.id = id;
