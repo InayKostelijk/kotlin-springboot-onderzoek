@@ -38,14 +38,11 @@ class Expense(
      var updatedAt: LocalDateTime? = null
         protected set
 
-
     fun update(item: String, category: ExpenseCategory, price: Double) {
         this.item = item
         this.category = category
         this.price = price
     }
-
-
 }
 
 
