@@ -5,7 +5,9 @@ import jakarta.persistence.EnumType
 import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
+import jakarta.persistence.ManyToOne
 import nl.confighurator.backend.expense_tracker.domain.enums.ExpenseCategory
+import nl.confighurator.backend.user.domain.User
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.LocalDateTime
@@ -15,7 +17,8 @@ import java.time.LocalDateTime
 class Expense(
     item: String,
     category: ExpenseCategory,
-    price: Double
+    price: Double,
+    user: User,
 ) {
     @Id
     @GeneratedValue
@@ -29,6 +32,10 @@ class Expense(
         protected set
 
      var price: Double = price
+        protected set
+
+    @ManyToOne(targetEntity = User::class)
+    var user: User = user
         protected set
 
     @CreationTimestamp

@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.client.HttpServerErrorException
 
 //https://www.baeldung.com/kotlin/spring-rest-error-handling
-@ControllerAdvice
-class GlobalExceptionHandler {
+@ControllerAdvice(basePackages = ["nl.confighurator.backend.expense_tracker"])
+class ExpenseSystemGlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handleValidationException(ex: MethodArgumentNotValidException): ResponseEntity<CustomResponse> {

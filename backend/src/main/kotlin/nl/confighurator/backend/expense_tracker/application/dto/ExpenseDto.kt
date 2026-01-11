@@ -7,6 +7,7 @@ import java.time.LocalDateTime
 
 data class ExpenseDto(
     @NotNull val id: Long?,
+    @NotNull val userId: Long,
     @NotNull val item: String,
     @NotNull val category: ExpenseCategory,
     @NotNull val price: Double,

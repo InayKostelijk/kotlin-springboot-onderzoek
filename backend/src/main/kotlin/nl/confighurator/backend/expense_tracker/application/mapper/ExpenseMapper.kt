@@ -9,6 +9,7 @@ object ExpenseMapper {
     fun toExpenseDto(expense: Expense): ExpenseDto {
         return ExpenseDto(
             expense.id,
+            expense.user.id,
             expense.item,
             expense.category,
             expense.price,
