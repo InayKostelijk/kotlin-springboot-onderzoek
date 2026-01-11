@@ -2,6 +2,7 @@ package nl.confighurator.backend.expense_tracker.domain;
 
 import jakarta.persistence.*;
 import nl.confighurator.backend.expense_tracker.domain.enums.ExpenseCategory;
+import nl.confighurator.backend.user.domain.User;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -24,6 +25,9 @@ import java.time.LocalDateTime;
         @CreationTimestamp
         private LocalDateTime createdAt;
 
+        @ManyToOne(targetEntity =  User.class)
+        private User user;
+
         @UpdateTimestamp
         private LocalDateTime updatedAt;
 
@@ -37,13 +41,14 @@ import java.time.LocalDateTime;
             this.updatedAt = updatedAt;
         }
 
-        public ExpenseJavaVersion(long id, String title, ExpenseCategory category, Double price, LocalDateTime createdAt, LocalDateTime updatedAt) {
-            this.id = id;
-            this.title = title;
-            this.category = category;
-            this.price = price;
-            this.createdAt = createdAt;
+        public ExpenseJavaVersion(LocalDateTime updatedAt, User user, LocalDateTime createdAt, Double price, ExpenseCategory category, String title, long id) {
             this.updatedAt = updatedAt;
+            this.user = user;
+            this.createdAt = createdAt;
+            this.price = price;
+            this.category = category;
+            this.title = title;
+            this.id = id;
         }
 
         public long getId() {
@@ -68,6 +73,10 @@ import java.time.LocalDateTime;
 
         public LocalDateTime getUpdatedAt() {
             return updatedAt;
+        }
+
+        public User getUser() {
+            return user;
         }
     }
 
