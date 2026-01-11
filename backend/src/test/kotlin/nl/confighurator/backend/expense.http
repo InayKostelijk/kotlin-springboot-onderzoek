@@ -2,14 +2,23 @@ GET http://localhost:8080/api/expenses
 
 ###
 
-GET http://localhost:8080/api/expenses/1
+GET http://localhost:8080/api/expenses/2
 
 ###
 POST http://localhost:8080/api/expenses
 Content-Type: application/json
 
 {
-  "item": "mcChicken",
-  "category": "FOOD_DRINKS",
-  "price": 50
+  "item": "medicine",
+  "category": "HEALTH",
+  "price": 1
+}
+###
+PUT http://localhost:8080/api/expenses/1
+Content-Type: application/json
+
+{
+  "item": "belastingdienst",
+  "category": "TAXES",
+  "price": 100
 }
