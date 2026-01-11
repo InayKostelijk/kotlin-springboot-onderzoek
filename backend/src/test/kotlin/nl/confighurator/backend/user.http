@@ -17,3 +17,5 @@ Content-Type: application/json
   "password": "newpassword",
   "email": "johnny@example.com"
 }
+###
+DELETE http://localhost:8080/api/user/1

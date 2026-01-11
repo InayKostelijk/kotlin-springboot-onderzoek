@@ -1,5 +1,7 @@
 package nl.confighurator.backend.user.application.dto;
 
-public record UserDto(Long id,String username, String password, String email) {
+import org.jetbrains.annotations.NotNull;
+
+public record UserDto(Long id, @NotNull String username,@NotNull String password,@NotNull String email) {
 }
 

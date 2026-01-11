@@ -51,5 +51,11 @@ public class UserService {
                 userDto.email()
         );
     }
-
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user == null) {
+            throw new BadRequestException("User not found");
+        }
+        userRepository.delete(user);
+    }
 }

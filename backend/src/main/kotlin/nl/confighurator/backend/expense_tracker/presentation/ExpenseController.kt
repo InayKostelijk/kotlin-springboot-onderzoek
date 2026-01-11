@@ -1,7 +1,7 @@
 package nl.confighurator.backend.expense_tracker.presentation
 
+import jakarta.validation.Valid
 import nl.confighurator.backend.expense_tracker.application.dto.ExpenseDto
-import nl.confighurator.backend.expense_tracker.application.mapper.ExpenseMapper
 import nl.confighurator.backend.expense_tracker.application.service.ExpenseService
 import nl.confighurator.backend.expense_tracker.application.service.ExpenseSystemService
 import org.springframework.http.HttpStatus
@@ -33,13 +33,13 @@ class ExpenseController(
     }
 
     @GetMapping("{id}")
-    fun getExpenseById(@PathVariable id: Long): ResponseEntity<ExpenseDto>{
+    fun getExpenseById(@Valid@PathVariable id: Long): ResponseEntity<ExpenseDto>{
         val getExpense: ExpenseDto = expenseService.getExpenseById(id)
         return ResponseEntity(getExpense,HttpStatus.OK)
     }
 
     @PostMapping
-    fun createExpense(@RequestBody expenseDto: ExpenseDto): ResponseEntity<String>{
+    fun createExpense(@Valid@RequestBody expenseDto: ExpenseDto): ResponseEntity<String>{
 
         val created: Boolean = expenseSystemService.createExpense(expenseDto)
         if(!created){
@@ -49,7 +49,7 @@ class ExpenseController(
         return ResponseEntity.status(HttpStatus.CREATED).body("Je uitgave is toegevoegd")
     }
     @PutMapping("{id}")
-    fun updateExpense(@PathVariable id: Long, @RequestBody expenseDto: ExpenseDto): ResponseEntity<String>{
+    fun updateExpense(@Valid @PathVariable id: Long, @RequestBody expenseDto: ExpenseDto): ResponseEntity<String>{
         val updateExpense: Boolean = expenseService.editExpenseById(id,expenseDto)
         if (!updateExpense){
             return ResponseEntity("Het is niet gelukt om de expense te updaten",HttpStatus.BAD_REQUEST)
@@ -58,7 +58,7 @@ class ExpenseController(
     }
 
     @DeleteMapping("{id}")
-    fun deleteExpense(@PathVariable id: Long): ResponseEntity<String>{
+    fun deleteExpense(@Valid @PathVariable id: Long): ResponseEntity<String>{
         expenseService.deleteExpense(id)
         return ResponseEntity("Je uitgave is verwijderd",HttpStatus.OK)
     }
