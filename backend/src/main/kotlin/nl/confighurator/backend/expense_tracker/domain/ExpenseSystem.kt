@@ -29,4 +29,9 @@ class ExpenseSystem {
         expenseList.add(expense)
         return expense
     }
+
+    fun createUser(user: User): User {
+        userList.add(user)
+        return user
+    }
 }

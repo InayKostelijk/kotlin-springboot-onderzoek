@@ -1,0 +1,60 @@
+# Running "docker-compose up" (active process)
+# or "docker-compose start" (background process)
+# will setup our development database
+services:
+  db:
+    labels:
+      io.portainer.accesscontrol.public: "true"
+    image: postgres
+    ports:
+      # This means you can connect to 'localhost:15432' from your computer
+      # and it will patch it through to the container-port 5432
+      - "15432:5432"
+    environment:
+      # So the database-superuser is called postgres/admin
+      # The account our application will use is configured in init.sql
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      # Required volume: creates the initial db and user
+      - "./database/mount:/docker-entrypoint-initdb.d"
+      # Optional volume: saves data between docker runs
+      - project_dgt_db_data:/var/lib/postgresql/data"
+
+  backend:
+    build:
+      labels:
+        io.portainer.accesscontrol.public: "true"
+        args:
+          -ENV=production
+      context: ./backend
+      dockerfile: Dockerfile.prod
+
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
+    depends_on:
+      - db
+
+  lit-vite-app:
+    labels:
+      io.portainer.accesscontrol.public: "true"
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    env_file: ./frontend/.env.production
+    volumes:
+      - ./frontend/src:/app/src
+    ports:
+      - "5173:5173"
+    environment:
+      #for hot reload in the container when developing
+      # - CHOKIDAR_USEPOLLING=true
+      NODE_ENV: production
+
+
+
+volumes:
+  project_dgt_db_data:

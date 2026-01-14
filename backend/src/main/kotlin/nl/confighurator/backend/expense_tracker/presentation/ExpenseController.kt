@@ -43,7 +43,7 @@ class ExpenseController(
 
         val created: Boolean = expenseSystemService.createExpense(expenseDto)
         if(!created){
-            return ResponseEntity("Het is gelukt om de expense te maken",HttpStatus.CREATED)
+            return ResponseEntity("Het is niet gelukt om de expense te maken",HttpStatus.BAD_REQUEST)
         }
 
         return ResponseEntity.status(HttpStatus.CREATED).body("Je uitgave is toegevoegd")
