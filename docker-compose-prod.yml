@@ -32,9 +32,9 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/hu-s3-onderzoekDatabase
-      - SPRING_DATASOURCE_USERNAME=hu-s3-kotlin-sprinbootonderzoek-dbadmin
-      - SPRING_DATASOURCE_PASSWORD=hu-s3-kotlin-sprinbootonderzoek-pwd
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=admin
     depends_on:
       - db
 
