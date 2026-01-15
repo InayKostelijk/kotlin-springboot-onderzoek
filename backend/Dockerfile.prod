@@ -7,7 +7,7 @@ ARG ENV
 
 
 #Set enviroment variables using the ARG values
-ENV ENV=$ENV \
+ENV ENV=production
 
 COPY pom.xml /app
 COPY src /app/src
