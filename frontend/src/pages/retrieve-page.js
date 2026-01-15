@@ -75,6 +75,7 @@ export class RetrievePage extends LitElement {
                     <th scope="col">ID</th>
                     <th scope="col">User ID</th>
                     <th scope="col">Category</th>
+                    <th scope="col">item</th>
                     <th scope="col">Price</th>
                     <th scope="col">Created At</th>
                 </tr>
@@ -85,6 +86,7 @@ export class RetrievePage extends LitElement {
                         <td>${expense.id}</td>
                         <td>${expense.userId}</td>
                         <td>${expense.category}</td>
+                        <td>${expense.item}</td>
                         <td>€${expense.price}</td>
                         <td>${expense.createdAt}</td>
                     </tr>
