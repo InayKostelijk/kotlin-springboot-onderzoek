@@ -4,7 +4,7 @@ class ExpenseService {
     async createExpense(expense){
         try {
 
-            const url = "http://localhost:8080/api/expenses"
+            const url = "http://172.167.175.183:8080/api/api/expenses"
             const resp = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -23,7 +23,7 @@ class ExpenseService {
     }
     async getAllExpenses(){
         try{
-            const url = "http://localhost:8080/api/expenses"
+            const url = "http://172.167.175.183:8080/api/api/expenses"
             const resp = await fetch(url, {
                 method: "GET",
                 headers: {
