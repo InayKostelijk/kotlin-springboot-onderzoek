@@ -48,10 +48,10 @@ services:
       - ./frontend/src:/app/src
     ports:
       - "5173:5173"
-    environment:
+
       #for hot reload in the container when developing
       # - CHOKIDAR_USEPOLLING=true
-      NODE_ENV: production
+#      NODE_ENV: production
 
 
 
