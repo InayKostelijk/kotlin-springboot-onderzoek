@@ -3,8 +3,6 @@
 # will setup our development database
 services:
   db:
-    labels:
-      io.portainer.accesscontrol.public: "true"
     image: postgres
     ports:
       # This means you can connect to 'localhost:15432' from your computer
@@ -22,38 +20,28 @@ services:
 
   backend:
     build:
-      labels:
-        io.portainer.accesscontrol.public: "true"
-        args:
-          -ENV=production
       context: ./backend
-      dockerfile: Dockerfile.prod
-
+      dockerfile: Dockerfile
     ports:
       - "8080:8080"
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=admin
     depends_on:
       - db
 
   lit-vite-app:
-    labels:
-      io.portainer.accesscontrol.public: "true"
     build:
       context: ./frontend
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     volumes:
       - ./frontend/src:/app/src
     ports:
       - "5173:5173"
     environment:
       #for hot reload in the container when developing
-      # - CHOKIDAR_USEPOLLING=true
-      NODE_ENV: production
-
+      - CHOKIDAR_USEPOLLING=true
 
 
 volumes:
   project_dgt_db_data:
+  portainer_data:
