@@ -25,7 +25,6 @@ services:
       labels:
         io.portainer.accesscontrol.public: "true"
         args:
-          -ENV=production
       context: ./backend
       dockerfile: Dockerfile.prod
 
